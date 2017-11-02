@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using Garage25.Models;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Garage25.DataAccessLayer
 {
@@ -18,5 +19,10 @@ namespace Garage25.DataAccessLayer
         public DbSet<ParkedVehicle> ParkedVehicls { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<VehicleType> VechicleTypes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
     }
 }

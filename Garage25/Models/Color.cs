@@ -12,7 +12,8 @@ namespace Garage25.Models
 
         [Required]
         [Display(Name = "Color")]
-        [RegularExpression(@"^[A-Ö]+[a-öA-Ö''- '\s]*$")]
+       // [RegularExpression(@"^[A-Ö]+[a-öA-Ö''- '\s]*$")]
         public string Name { get; set; }
+
     }
 }

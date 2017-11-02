@@ -18,13 +18,13 @@ namespace Garage25.Models
         [Required]
         [Display(Name = "First Name")]
         [StringLength(50, ErrorMessage = "First name cannot be more than 50 characters")]
-        [RegularExpression(@"^[A-Ö]+[a-öA-Ö''- '\s]*$")]
+       // [RegularExpression(@"^[A-Z]+[a-zA-Z''- '\s]*$")]
         public string FirstName { get; set; }
 
         [Required]
         [Display(Name = "Last Name")]
         [StringLength(50, ErrorMessage = "Last name cannot be more than 50 characters")]
-        [RegularExpression(@"^[A-Ö]+[a-öA-Ö''- '\s]*$")]
+      //  [RegularExpression(@"^[A-Z]+[a-zA-Z''- '\s]*$")]
         public string LastName { get; set; }
 
         [Required]
@@ -33,5 +33,7 @@ namespace Garage25.Models
 
         [Display(Name = "Full Name")]
         public string FullName => (FirstName + " " + LastName).Trim();
+
+        public ICollection<ParkedVehicle> ParkedVehicles { get; set; }
     }
 }
