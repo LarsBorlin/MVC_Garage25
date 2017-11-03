@@ -16,10 +16,39 @@ namespace Garage25.Controllers
         private GarageContext db = new GarageContext();
 
         // GET: Person
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter)
         {
 
-            var person = db.Persons.Include(p => p.ParkedVehicles);                    
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.SortParam = String.IsNullOrEmpty(sortOrder) ? "FullName_desc" : "";
+            //ViewBag.DateSortParam = sortOrder == "Date" ? "date_desc" : "Date";
+
+            var person = db.Persons.Include(p => p.ParkedVehicles);
+
+            if (searchString == null)
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                person = person.Where(p => p.FirstName.Contains(searchString) || p.LastName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "FullName_desc":
+                    {
+                        person = person.OrderByDescending(p => p.FirstName);
+                        break;}
+                  
+                default:
+                    {
+                        person = person.OrderBy(p => p.FirstName);
+                        break; }
+            }
 
             return View(person.ToList());
         }
