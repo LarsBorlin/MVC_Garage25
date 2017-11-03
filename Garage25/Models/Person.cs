@@ -24,7 +24,7 @@ namespace Garage25.Models
         [Required]
         [Display(Name = "Last Name")]
         [StringLength(50, ErrorMessage = "Last name cannot be more than 50 characters")]
-      //  [RegularExpression(@"^[A-Z]+[a-zA-Z''- '\s]*$")]
+       // [RegularExpression(@"^[A-Z]+[a-zA-Z''- '\s]*$")]
         public string LastName { get; set; }
 
         [Required]
@@ -34,6 +34,6 @@ namespace Garage25.Models
         [Display(Name = "Full Name")]
         public string FullName => (FirstName + " " + LastName).Trim();
 
-        public ICollection<ParkedVehicle> ParkedVehicles { get; set; }
+        public virtual ICollection<ParkedVehicle> ParkedVehicles { get; set; }
     }
 }

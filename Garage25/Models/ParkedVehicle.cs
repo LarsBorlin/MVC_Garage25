@@ -28,7 +28,7 @@ namespace Garage25.Models
         public string RegistrationNumber { get; set; }
 
         [Display(Name = "Vehicle brand")]
-       // [RegularExpression(@"^[A-Z]+[a-zA-Z''- '\s]*$")]
+      //  [RegularExpression(@"^[A-Z]+[a-zA-Z''- '\s]*$")]
         public string VehicleBrand { get; set; }
 
         [Required]
@@ -43,9 +43,9 @@ namespace Garage25.Models
         public int ColorId { get; set; }
 
 
-        public Color Color { get; set; }
-        public VehicleType VehicleType { get; set; }
-        public Person Person { get; set; }
+        public virtual Color Color { get; set; }
+        public virtual VehicleType VehicleType { get; set; }
+        public virtual Person Person { get; set; }
 
 
     }

@@ -29,7 +29,8 @@ namespace Garage25.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.ParkedVehicls.Find(id);
+            ParkedVehicle parkedVehicle = db.ParkedVehicls.Find(id);                     
+           
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
