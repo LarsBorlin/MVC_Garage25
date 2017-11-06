@@ -16,7 +16,7 @@ namespace Garage25.DataAccessLayer
         }
         
         public DbSet<Color> Colors { get; set; }
-        public DbSet<ParkedVehicle> ParkedVehicls { get; set; }
+        public DbSet<ParkedVehicle> ParkedVehicles { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<VehicleType> VechicleTypes { get; set; }
 
