@@ -73,15 +73,15 @@ namespace Garage25.Controllers
             ViewBag.parking = String.IsNullOrEmpty(sortOrder) ? "parking_desc" : "parking_asc";
             //ViewBag.DateSortParm6 = sortOrder == "Int" ? "int_desc" : "Int";
 
-            var parkedVehicles = db.ParkedVehicles.Include(p => p.Member).Include(p => p.VehicleColor).Include(p => p.VehicleType);
+            var parkedVehicles = db.ParkedVehicles.Include(p => p.Person).Include(p => p.Color).Include(p => p.VehicleType);
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    parkedVehicles = parkedVehicles.Include(p => p.Member).OrderByDescending(s => (s.Member.FirstName ?? "") + " " + (s.Member.LastName ?? ""));
+                    parkedVehicles = parkedVehicles.Include(p => p.Person).OrderByDescending(s => (s.Person.FirstName ?? "") + " " + (s.Person.LastName ?? ""));
                     break;
                 case "name_asc":
-                    parkedVehicles = parkedVehicles.Include(p => p.Member).OrderBy(s => (s.Member.FirstName ?? "") + " " + (s.Member.LastName ?? ""));
+                    parkedVehicles = parkedVehicles.Include(p => p.Person).OrderBy(s => (s.Person.FirstName ?? "") + " " + (s.Person.LastName ?? ""));
                     break;
                 case "type_desc":
                     parkedVehicles = parkedVehicles.Include(p => p.VehicleType).OrderByDescending(s => s.VehicleType.TypeName);
@@ -90,10 +90,10 @@ namespace Garage25.Controllers
                     parkedVehicles = parkedVehicles.Include(p => p.VehicleType).OrderBy(s => s.VehicleType.TypeName);
                     break;
                 case "color_desc":
-                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.VehicleColor.Name);
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.Color.Name);
                     break;
                 case "color_asc":
-                    parkedVehicles = parkedVehicles.OrderBy(s => s.VehicleColor.Name);
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.Color.Name);
                     break;
                 case "brand_desc":
                     parkedVehicles = parkedVehicles.OrderByDescending(s => s.VehicleBrand);
@@ -114,13 +114,13 @@ namespace Garage25.Controllers
                     parkedVehicles = parkedVehicles.OrderByDescending(s => s.InDate);
                     break;
                 case "parking_desc":
-                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.ParkingPlace);
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.ParkingSpot);
                     break;
                 case "parking_asc":
-                    parkedVehicles = parkedVehicles.OrderBy(s => s.ParkingPlace);
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.ParkingSpot);
                     break;
                 default:
-                    parkedVehicles = parkedVehicles.Include(p => p.Member).OrderBy(s => (s.Member.FirstName ?? "") + " " + (s.Member.LastName ?? ""));
+                    parkedVehicles = parkedVehicles.Include(p => p.Person).OrderBy(s => (s.Person.FirstName ?? "") + " " + (s.Person.LastName ?? ""));
                     break;
             }
             return View(parkedVehicles.ToList());
