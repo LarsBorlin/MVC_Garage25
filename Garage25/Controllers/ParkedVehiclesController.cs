@@ -20,7 +20,7 @@ namespace Garage25.Controllers
 
         // GET: SummaryParkedVehicles
 
-        public ActionResult Index()
+        public ActionResult Index(string RegNoString, string VehString)
         {
 
             var parkedVehicles = db.ParkedVehicles.Include(p => p.Person).Include(p => p.VehicleType);
@@ -32,7 +32,17 @@ namespace Garage25.Controllers
             //    RegistrationNumber = v.RegistrationNumber,
             //    ParkedTime = (DateTime.Now.Subtract(v.InDate))
             //});
+            if (!String.IsNullOrEmpty(RegNoString))
+            {
 
+                parkedVehicles = parkedVehicles.Where(s => s.RegistrationNumber.Contains(RegNoString));
+
+            }
+            if (!String.IsNullOrEmpty(VehString))
+            {
+
+                parkedVehicles = parkedVehicles.Where(s => s.VehicleType.TypeName.Contains(VehString));
+            }
             var parkedSummaryList = new List<SummaryParkedVehicles>();
 
             foreach (var parkedSummary in parkedVehicles)
@@ -60,7 +70,7 @@ namespace Garage25.Controllers
         
 
         // GET: ParkedVehicles
-        public ActionResult DetailedIndex(string sortOrder)
+        public ActionResult DetailedIndex(string sortOrder, string RegNoString, string VehString)
         {
             //var parkedVehicls = db.ParkedVehicls.Include(p => p.Color).Include(p => p.Person).Include(p => p.VehicleType);
             //return View(parkedVehicls.ToList());
@@ -74,6 +84,17 @@ namespace Garage25.Controllers
             //ViewBag.DateSortParm6 = sortOrder == "Int" ? "int_desc" : "Int";
 
             var parkedVehicles = db.ParkedVehicles.Include(p => p.Person).Include(p => p.Color).Include(p => p.VehicleType);
+            if (!String.IsNullOrEmpty(RegNoString))
+            {
+
+                parkedVehicles = parkedVehicles.Where(s => s.RegistrationNumber.Contains(RegNoString));
+                                       
+            }
+            if (!String.IsNullOrEmpty(VehString))
+            {
+
+                parkedVehicles = parkedVehicles.Where(s=>s.VehicleType.TypeName.Contains(VehString));
+            }
 
             switch (sortOrder)
             {

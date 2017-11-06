@@ -10,6 +10,16 @@
     @*@Html.ActionLink("Create New", "Create")*@
     <input type="submit" value="Check in" class="btn btn-default" onclick="location.href='@Url.Action("Create","ParkedVehicles")'" />
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find RegNo: @Html.TextBox("RegNoString")
+        <input type="submit" value="Search" />
+    
+        Find Vehicle Type: @Html.TextBox("VehString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
 
