@@ -12,58 +12,68 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Color.Name)
+            @*@Html.DisplayNameFor(model => model.Member.MailAddress)*@
+
+            @Html.ActionLink("Member", "DetailedIndex", new { sortOrder = ViewBag.name })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Person.MailAddress)
+            @*@Html.DisplayNameFor(model => model.VehicleColor.Name)*@
+            @Html.ActionLink("Vehicle Color", "DetailedIndex", new { sortOrder = ViewBag.color })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VehicleType.TypeName)
+            @*@Html.DisplayNameFor(model => model.VehicleType.TypeName)*@
+            @Html.ActionLink("Vehicle Type", "DetailedIndex", new { sortOrder = ViewBag.type })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RegistrationNumber)
+            @*@Html.DisplayNameFor(model => model.RegistrationNumber)*@
+            @Html.ActionLink("Registration Nr.", "DetailedIndex", new { sortOrder = ViewBag.reg })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VehicleBrand)
+            @*@Html.DisplayNameFor(model => model.VehicleBrand)*@
+            @Html.ActionLink("Vehicle Brand", "DetailedIndex", new { sortOrder = ViewBag.brand })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InDate)
+            @*@Html.DisplayNameFor(model => model.InDate)*@
+            @Html.ActionLink("Check-In Date", "DetailedIndex", new { sortOrder = ViewBag.date })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ParkingSpot)
+            @*@Html.DisplayNameFor(model => model.ParkingPlace)*@
+            @Html.ActionLink("Parking Place", "DetailedIndex", new { sortOrder = ViewBag.parking })
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Color.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Person.MailAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleType.TypeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegistrationNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleBrand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ParkingSpot)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleType.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleBrand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkingSpot)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
