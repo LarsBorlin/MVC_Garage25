@@ -7,7 +7,8 @@
 <h2>Summary of Parked Vehicles</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
+    <input type="submit" value="Check in" class="btn btn-default" onclick="location.href='@Url.Action("Create","ParkedVehicles")'" />
 </p>
 <table class="table">
     <tr>
@@ -58,9 +59,13 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+
+            <input type="submit" value="Edit" class="btn btn-default" onclick="location.href='@Url.Action("Edit","ParkedVehicles" ,new { id = item.Id })'" />
+            <input type="submit" value="Details" class="btn btn-default" onclick="location.href='@Url.Action("Details","ParkedVehicles" ,new { id = item.Id })'" />
+            <input type="submit" value="Check out" class="btn btn-default" onclick="location.href='@Url.Action("CheckOut","ParkedVehicles" ,new { id = item.Id })'" />
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
         </td>
     </tr>
 }

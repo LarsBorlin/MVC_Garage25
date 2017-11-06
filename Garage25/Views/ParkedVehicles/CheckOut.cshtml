@@ -1,0 +1,89 @@
+﻿@model Garage25.Models.ViewModels.Receipt
+
+@{
+    ViewBag.Title = "Check Out";
+}
+
+<h2>Check Out Vehicle</h2>
+
+
+<div>
+    <h4>ParkedVehicle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckInDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckInDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckInDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckInDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Days)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Days)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hours)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Minutes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minutes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="CheckOut" class="btn btn-default" /> |
+            <input type="button" value="Cancel" class="btn btn-default" onclick="location.href='@Url.Action("Index", "ParkedVehicles")'" />      
+        </div>
+    }
+</div>
