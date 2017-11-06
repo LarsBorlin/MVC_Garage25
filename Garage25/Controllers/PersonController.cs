@@ -130,6 +130,11 @@ namespace Garage25.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Person person = db.Persons.Find(id);
+            if (person.ParkedVehicles.Count != 0)
+            {
+               return RedirectToAction("CheckOutBeforeMemberRemove", person);
+            }
+
             if (person == null)
             {
                 return HttpNotFound();
@@ -146,6 +151,11 @@ namespace Garage25.Controllers
             db.Persons.Remove(person);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult CheckOutBeforeMemberRemove(Person person)
+        {
+            return View(person);
         }
 
         protected override void Dispose(bool disposing)

@@ -1,0 +1,12 @@
+﻿@model Garage25.Models.Person
+@{
+    ViewBag.Title = "CheckOutBeforeMemberRemove";
+}
+
+<h2>CheckOutBeforeMemberRemove</h2>
+
+<p>All Vehicles owned by @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.FirstName) 
+    must be CheckOut before @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.FirstName) can be removed as a member(</p>
+
+<input type="button" value="Back to Member List" class="btn btn-default" onclick="location.href='@Url.Action("Index","Person")'" />
+
