@@ -23,7 +23,7 @@ namespace Garage25.Controllers
         public ActionResult Index()
         {
 
-            var parkedVehicles = db.ParkedVehicls.Include(p => p.Person).Include(p => p.VehicleType);
+            var parkedVehicles = db.ParkedVehicles.Include(p => p.Person).Include(p => p.VehicleType);
 
             //var parkedSummary = parkedVehicles.Select(v => new SummaryParkedVehicles
             //{
@@ -133,7 +133,7 @@ namespace Garage25.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.ParkedVehicls.Find(id);                     
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);                     
            
             if (parkedVehicle == null)
             {
@@ -161,7 +161,7 @@ namespace Garage25.Controllers
             if (ModelState.IsValid)
             {
                 parkedVehicle.InDate = DateTime.Now;
-                db.ParkedVehicls.Add(parkedVehicle);
+                db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -179,7 +179,7 @@ namespace Garage25.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.ParkedVehicls.Find(id);
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
@@ -216,7 +216,7 @@ namespace Garage25.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.ParkedVehicls.Find(id);
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
@@ -231,7 +231,7 @@ namespace Garage25.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ParkedVehicle parkedVehicle = db.ParkedVehicls.Find(id);
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
@@ -263,8 +263,8 @@ namespace Garage25.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CheckOutConfirmed(int id)
         {
-            ParkedVehicle parkedVehicle = db.ParkedVehicls.Find(id);
-            db.ParkedVehicls.Remove(parkedVehicle);
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
+            db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -169,6 +169,10 @@
     <Compile Include="Migrations\201711021414084_ChangeToEnglish1.Designer.cs">
       <DependentUpon>201711021414084_ChangeToEnglish1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711061415581_spellerror.cs" />
+    <Compile Include="Migrations\201711061415581_spellerror.Designer.cs">
+      <DependentUpon>201711061415581_spellerror.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Color.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
@@ -265,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711021414084_ChangeToEnglish1.resx">
       <DependentUpon>201711021414084_ChangeToEnglish1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061415581_spellerror.resx">
+      <DependentUpon>201711061415581_spellerror.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
