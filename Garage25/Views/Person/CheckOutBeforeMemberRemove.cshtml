@@ -3,10 +3,36 @@
     ViewBag.Title = "CheckOutBeforeMemberRemove";
 }
 
-<h2>CheckOutBeforeMemberRemove</h2>
+<h2>CheckOut all Vehicles before Removal of Member</h2>
 
-<p>All Vehicles owned by @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.FirstName) 
-    must be CheckOut before @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.FirstName) can be removed as a member(</p>
 
-<input type="button" value="Back to Member List" class="btn btn-default" onclick="location.href='@Url.Action("Index","Person")'" />
+<table class="table">
+    <tr>
+        <th>
+            Reg No
+        </th>
+      </tr>
+    <tr>
+        @foreach (var item in Model.ParkedVehicles)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationNumber);
+            </td>
+
+           
+
+
+
+        }
+    </tr>
+    
+  
+   
+</table>
+            <p>
+                All Vehicles owned by @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+                must be CheckOut before @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName) can be removed as a member
+            </p>
+
+            <input type="button" value="Back to Member List" class="btn btn-default" onclick="location.href='@Url.Action("Index","Person")'" />
 

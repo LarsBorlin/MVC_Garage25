@@ -116,6 +116,11 @@ namespace Garage25.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult CheckOutBeforeRemoveVehicleType(VehicleType vehicleType)
+        {
+            return View(vehicleType);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
