@@ -29,6 +29,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    <input type="submit" value="Back to Member List" class="btn btn-default" onclick="location.href='@Url.Action("Index","Person")'" />
+
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

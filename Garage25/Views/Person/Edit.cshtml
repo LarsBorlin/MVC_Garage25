@@ -1,10 +1,10 @@
 ﻿@model Garage25.Models.Person
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Update Member information";
 }
 
-<h2>Edit</h2>
+<h2>Update Member information</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Person</h4>
+        <h4>@*Member*@</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -51,14 +51,18 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Update Member List" class="btn btn-default" /> |
+                <input type="submit" value="Back to Member List" class="btn btn-default" onclick="location.href='@Url.Action("Index","Person")'" />
+
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index")*@
+
+
 </div>
 
 @section Scripts {

@@ -1,10 +1,10 @@
 ﻿@model Garage25.Models.VehicleType
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Vehicle Type";
 }
 
-<h2>Create</h2>
+<h2>Create New Vehicle Type</h2>
 
 
 @using (Html.BeginForm()) 
@@ -33,7 +33,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" /> |
+                <input type="submit" value="Back to Vehicle Type List" class="btn btn-default" onclick="location.href='@Url.Action("Index","VehicleTypes")'" />
+
             </div>
         </div>
     </div>
@@ -41,6 +43,7 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
+
 </div>
 
 @section Scripts {

@@ -1,10 +1,10 @@
 ﻿@model Garage25.Models.VehicleType
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Update Vehicle Type";
 }
 
-<h2>Edit</h2>
+<h2>Update Vehicle Type</h2>
 
 
 @using (Html.BeginForm())
@@ -35,14 +35,17 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" /> |
+                <input type="submit" value="Back to Vehicle Type List" class="btn btn-default" onclick="location.href='@Url.Action("Index","VehicleType")'" />
+
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Back to List", "Index")*@
+
 </div>
 
 @section Scripts {
