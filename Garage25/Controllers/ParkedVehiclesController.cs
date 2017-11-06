@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Garage25.DataAccessLayer;
 using Garage25.Models;
+using Garage25.Models.ViewModels;
 
 namespace Garage25.Controllers
 {
@@ -15,8 +16,50 @@ namespace Garage25.Controllers
     {
         private GarageContext db = new GarageContext();
 
-        // GET: ParkedVehicles
+
+        // GET: SummaryParkedVehicles
+
         public ActionResult Index()
+        {
+
+            var parkedVehicles = db.ParkedVehicls.Include(p => p.Person).Include(p => p.VehicleType);
+
+            //var parkedSummary = parkedVehicles.Select(v => new SummaryParkedVehicles
+            //{
+            //    Owner = v.Person.FirstName + " " + v.Person.LastName,
+            //    VehicleTypeName = v.VehicleType.TypeName,
+            //    RegistrationNumber = v.RegistrationNumber,
+            //    ParkedTime = (DateTime.Now.Subtract(v.InDate))
+            //});
+
+            var parkedSummaryList = new List<SummaryParkedVehicles>();
+
+            foreach (var parkedSummary in parkedVehicles)
+            {
+                SummaryParkedVehicles SummaryParked = new SummaryParkedVehicles();
+                SummaryParked.Id = parkedSummary.Id;
+                SummaryParked.Owner = parkedSummary.Person.FirstName + " " + parkedSummary.Person.LastName;
+                SummaryParked.VehicleTypeName = parkedSummary.VehicleType.TypeName;
+                SummaryParked.RegistrationNumber = parkedSummary.RegistrationNumber;
+               // SummaryParked.ParkedTime = (DateTime.Now.Subtract(parkedSummary.InDate));
+                SummaryParked.Days = (DateTime.Now.Subtract(parkedSummary.InDate).Days);
+                SummaryParked.Hours = (DateTime.Now.Subtract(parkedSummary.InDate).Hours);
+                SummaryParked.Minutes = (DateTime.Now.Subtract(parkedSummary.InDate).Minutes);
+
+                parkedSummaryList.Add(SummaryParked);
+            }
+
+            return View(parkedSummaryList);
+
+          
+
+
+        }
+
+        
+
+        // GET: ParkedVehicles
+        public ActionResult DetailedIndex()
         {
             var parkedVehicls = db.ParkedVehicls.Include(p => p.Color).Include(p => p.Person).Include(p => p.VehicleType);
             return View(parkedVehicls.ToList());
