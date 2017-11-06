@@ -60,10 +60,70 @@ namespace Garage25.Controllers
         
 
         // GET: ParkedVehicles
-        public ActionResult DetailedIndex()
+        public ActionResult DetailedIndex(string sortOrder)
         {
-            var parkedVehicls = db.ParkedVehicls.Include(p => p.Color).Include(p => p.Person).Include(p => p.VehicleType);
-            return View(parkedVehicls.ToList());
+            //var parkedVehicls = db.ParkedVehicls.Include(p => p.Color).Include(p => p.Person).Include(p => p.VehicleType);
+            //return View(parkedVehicls.ToList());
+            ViewBag.name = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "name_asc";
+            ViewBag.color = String.IsNullOrEmpty(sortOrder) ? "color_desc" : "color_asc";
+            ViewBag.type = String.IsNullOrEmpty(sortOrder) ? "type_desc" : "type_asc";
+            ViewBag.reg = String.IsNullOrEmpty(sortOrder) ? "reg_desc" : "reg_asc";
+            ViewBag.brand = String.IsNullOrEmpty(sortOrder) ? "brand_desc" : "brand_asc";
+            ViewBag.date = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.parking = String.IsNullOrEmpty(sortOrder) ? "parking_desc" : "parking_asc";
+            //ViewBag.DateSortParm6 = sortOrder == "Int" ? "int_desc" : "Int";
+
+            var parkedVehicles = db.ParkedVehicles.Include(p => p.Member).Include(p => p.VehicleColor).Include(p => p.VehicleType);
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    parkedVehicles = parkedVehicles.Include(p => p.Member).OrderByDescending(s => (s.Member.FirstName ?? "") + " " + (s.Member.LastName ?? ""));
+                    break;
+                case "name_asc":
+                    parkedVehicles = parkedVehicles.Include(p => p.Member).OrderBy(s => (s.Member.FirstName ?? "") + " " + (s.Member.LastName ?? ""));
+                    break;
+                case "type_desc":
+                    parkedVehicles = parkedVehicles.Include(p => p.VehicleType).OrderByDescending(s => s.VehicleType.TypeName);
+                    break;
+                case "type_asc":
+                    parkedVehicles = parkedVehicles.Include(p => p.VehicleType).OrderBy(s => s.VehicleType.TypeName);
+                    break;
+                case "color_desc":
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.VehicleColor.Name);
+                    break;
+                case "color_asc":
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.VehicleColor.Name);
+                    break;
+                case "brand_desc":
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.VehicleBrand);
+                    break;
+                case "brand_asc":
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.VehicleBrand);
+                    break;
+                case "reg_desc":
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.RegistrationNumber);
+                    break;
+                case "reg_asc":
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.RegistrationNumber);
+                    break;
+                case "Date":
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.InDate);
+                    break;
+                case "date_desc":
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.InDate);
+                    break;
+                case "parking_desc":
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.ParkingPlace);
+                    break;
+                case "parking_asc":
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.ParkingPlace);
+                    break;
+                default:
+                    parkedVehicles = parkedVehicles.Include(p => p.Member).OrderBy(s => (s.Member.FirstName ?? "") + " " + (s.Member.LastName ?? ""));
+                    break;
+            }
+            return View(parkedVehicles.ToList());
         }
 
         // GET: ParkedVehicles/Details/5
