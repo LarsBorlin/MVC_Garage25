@@ -34,15 +34,17 @@
             @Html.ActionLink("Registration Nr.", "Index", new { sortOrder = ViewBag.reg })
         </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Days)
+        <th class="text-center">
+            @*@Html.DisplayNameFor(model => model.Days)*@
+            Parking Time (Day:Hour:Minute)
+
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Hours)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Minutes)
-        </th>
+        </th>*@
 
         <th></th>
     </tr>
@@ -60,15 +62,17 @@
             @Html.DisplayFor(modelItem => item.RegistrationNumber)
         </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Days)
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Days) : 
+            @Html.DisplayFor(modelItem => item.Hours) :
+            @Html.DisplayFor(modelItem => item.Minutes)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Hours)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Minutes)
-        </td>
+        </td>*@
 
         <td>
             <input type="submit" value="Check out" class="btn btn-danger" onclick="location.href='@Url.Action("CheckOut","ParkedVehicles" ,new { id = item.Id })'" />
