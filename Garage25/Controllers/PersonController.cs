@@ -155,7 +155,8 @@ namespace Garage25.Controllers
 
         public ActionResult CheckOutBeforeMemberRemove(Person person)
         {
-            return View(person);
+            var personWithCheckInVehicles = db.Persons.Find(person.Id);
+            return View(personWithCheckInVehicles);
         }
 
         protected override void Dispose(bool disposing)
