@@ -16,7 +16,7 @@ namespace Garage25.Controllers
     {
         private GarageContext db = new GarageContext();
         private int MinuteCost = 1;
-
+        public static int TotalGarageCost;
 
         // GET: SummaryParkedVehicles
 
@@ -275,6 +275,54 @@ namespace Garage25.Controllers
             db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult VehStats()
+        {
+            var parkedVehicles = from m in db.ParkedVehicles.Include(p=>p.VehicleType)
+                                 select m;
+            var GarageInfoLst = new List<string>();
+
+
+            var airCount = parkedVehicles.Where(v => v.VehicleType.TypeName == "Airplane").Count();
+            var boatCount = parkedVehicles.Where(v => v.VehicleType.TypeName == "Boat").Count();
+            var busCount = parkedVehicles.Where(v => v.VehicleType.TypeName == "Bus").Count();
+            var carCount = parkedVehicles.Where(v => v.VehicleType.TypeName =="Car").Count();
+            var motCount = parkedVehicles.Where(v => v.VehicleType.TypeName =="Motorcycle").Count();
+
+
+
+            GarageInfoLst.Add($"Airplane count: {airCount}");
+            GarageInfoLst.Add($"Boat count: {boatCount}");
+            GarageInfoLst.Add($"Bus count: {busCount}");
+            GarageInfoLst.Add($"Car count: {carCount}");
+            GarageInfoLst.Add($"Motorcycle count: {motCount}");
+
+
+            //var WheelCount = (from d in db.ParkedVehicles
+            //                  select d.NumberOfWheels).Sum();
+            //GarageInfoLst.Add($"Total Wheels count: {WheelCount}");
+            //ViewBag.Text = GarageInfoLst;
+
+            var VehicleInfoLst = new List<VehicleStats>();
+
+            foreach (var veh in parkedVehicles)
+            {
+
+                VehicleStats vehs = new VehicleStats();
+                vehs.Id = veh.Id;
+                vehs.RegNo = veh.RegistrationNumber;
+                vehs.ParkedTime = (int)DateTime.Now.Subtract(veh.InDate).TotalMinutes;
+                vehs.TotalParkedCost = vehs.ParkedTime * MinuteCost;
+                VehicleInfoLst.Add(vehs);
+            }
+            TotalGarageCost = 0;
+            foreach (var vehCost in VehicleInfoLst)
+            {
+                TotalGarageCost += vehCost.TotalParkedCost;
+            }
+            GarageInfoLst.Add($"Total Garage Cost: {TotalGarageCost}");
+            ViewBag.Text = GarageInfoLst;
+            return View(VehicleInfoLst);
         }
 
         protected override void Dispose(bool disposing)

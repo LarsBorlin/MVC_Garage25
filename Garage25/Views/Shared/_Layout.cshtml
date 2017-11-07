@@ -19,11 +19,12 @@
                 @Html.ActionLink("Garage 2.5", "Index", "ParkedVehicles", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Parked Vehicles Summary", "Index", "ParkedVehicles")</li>
+                <ul class="nav navbar-nav">                    
                     <li>@Html.ActionLink("Parked Vehicles Details", "DetailedIndex", "ParkedVehicles")</li>
+                    <li>@Html.ActionLink("Garage Statistics", "VehStats", "ParkedVehicles")</li>
                     <li>@Html.ActionLink("Members", "Index", "Person")</li>
-                    <li>@Html.ActionLink("Vehicle Type Adm", "Index", "VehicleTypes")</li>
+                    <li>@Html.ActionLink("Vehicle Types", "Index", "VehicleTypes")</li>
+                    <li>@Html.ActionLink("Vehicle Colors", "Index", "Colors")</li>
                 </ul>
             </div>
         </div>
