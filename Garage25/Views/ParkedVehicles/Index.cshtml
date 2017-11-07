@@ -22,15 +22,18 @@
 <table class="table">
     <tr>
 
+
         <th>
-            @Html.DisplayNameFor(model => model.Owner)
+            @Html.ActionLink("Member", "Index", new { sortOrder = ViewBag.name })
+        </th>
+
+        <th>
+            @Html.ActionLink("Vehicle Type", "Index", new { sortOrder = ViewBag.type })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VehicleTypeName)
+            @Html.ActionLink("Registration Nr.", "Index", new { sortOrder = ViewBag.reg })
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RegistrationNumber)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Days)
         </th>

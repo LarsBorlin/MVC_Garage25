@@ -20,10 +20,50 @@ namespace Garage25.Controllers
 
         // GET: SummaryParkedVehicles
 
-        public ActionResult Index(string RegNoString, string VehString)
+        public ActionResult Index(string sortOrder, string RegNoString, string VehString)
         {
 
+            ViewBag.name = sortOrder == "Name" ? "name_desc" : "Name";          
+            ViewBag.type = sortOrder == "Type" ? "type_desc" : "Type";
+            ViewBag.reg = sortOrder == "Reg" ? "reg_desc" : "Reg";
+            //ViewBag.date = sortOrder == "Date" ? "date_desc" : "Date";
+
+
             var parkedVehicles = db.ParkedVehicles.Include(p => p.Person).Include(p => p.VehicleType);
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    parkedVehicles = parkedVehicles.Include(p => p.Person).OrderByDescending(s => (s.Person.FirstName ?? "") + " " + (s.Person.LastName ?? ""));
+            break;
+                case "Name":
+                    parkedVehicles = parkedVehicles.Include(p => p.Person).OrderBy(s => (s.Person.FirstName ?? "") + " " + (s.Person.LastName ?? ""));
+            break;
+                case "type_desc":
+                    parkedVehicles = parkedVehicles.Include(p => p.VehicleType).OrderByDescending(s => s.VehicleType.TypeName);
+            break;
+                case "Type":
+                    parkedVehicles = parkedVehicles.Include(p => p.VehicleType).OrderBy(s => s.VehicleType.TypeName);
+            
+           
+            break;
+                case "reg_desc":
+                    parkedVehicles = parkedVehicles.OrderByDescending(s => s.RegistrationNumber);
+            break;
+                case "Reg":
+                    parkedVehicles = parkedVehicles.OrderBy(s => s.RegistrationNumber);
+            break;
+            //    case "Date":
+            //        parkedVehicles = parkedVehicles.OrderBy(s => s.InDate);
+            //break;
+            //    case "date_desc":
+            //        parkedVehicles = parkedVehicles.OrderByDescending(s => s.InDate);
+           
+            //break;
+            default:
+                    parkedVehicles = parkedVehicles.Include(p => p.Person).OrderBy(s => (s.Person.FirstName ?? "") + " " + (s.Person.LastName ?? ""));
+            break;
+        }
 
             //var parkedSummary = parkedVehicles.Select(v => new SummaryParkedVehicles
             //{
