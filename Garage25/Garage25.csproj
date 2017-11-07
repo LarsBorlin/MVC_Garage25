@@ -180,6 +180,7 @@
     <Compile Include="Models\VehicleType.cs" />
     <Compile Include="Models\ViewModels\Receipt.cs" />
     <Compile Include="Models\ViewModels\SummaryParkedVehicles.cs" />
+    <Compile Include="Models\ViewModels\VehicleStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +244,7 @@
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
     <Content Include="Views\ParkedVehicles\CheckOut.cshtml" />
     <Content Include="Views\Person\CheckOutBeforeMemberRemove.cshtml" />
+    <Content Include="Views\ParkedVehicles\VehStats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
