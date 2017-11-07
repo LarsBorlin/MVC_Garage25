@@ -246,8 +246,10 @@ namespace Garage25.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,RegistrationNumber,VehicleBrand,InDate,ParkingSpot,VehicleTypeId,PersonId,ColorId")] ParkedVehicle parkedVehicle)
         {
+            var vehicleTime = db.ParkedVehicles.AsNoTracking().FirstOrDefault(v => v.Id == parkedVehicle.Id).InDate;
             if (ModelState.IsValid)
             {
+                parkedVehicle.InDate = vehicleTime;
                 db.Entry(parkedVehicle).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
