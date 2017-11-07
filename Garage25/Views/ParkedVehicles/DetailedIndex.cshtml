@@ -47,12 +47,12 @@
 
     @foreach (var item in Model)
     {
-        <tr class="active">
+        <tr class="success">
 
             <td>
                 @Html.DisplayFor(modelItem => item.Person.FullName)
             </td>
-            <td class="table-bordered" style="border-color:@Html.DisplayFor(modelItem => item.Color.Name).ToString();border-width:thick">
+            <td class="table-bordered" style="border-color:@Html.DisplayFor(modelItem => item.Color.Name).ToString();">
                 @Html.DisplayFor(modelItem => item.Color.Name)
             </td>
             <td>
