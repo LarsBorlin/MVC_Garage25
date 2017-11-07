@@ -38,6 +38,7 @@ namespace Garage25.Models
         [Display(Name = "Parking Spot Number")]
         public int ParkingSpot { get; set; }
 
+        [Display(Name = "Vehicle Type")]
         public int VehicleTypeId { get; set; }
         public int PersonId { get; set; }
         public int ColorId { get; set; }

@@ -194,7 +194,7 @@ namespace Garage25.Controllers
         public ActionResult Create()
         {
             ViewBag.ColorId = new SelectList(db.Colors, "Id", "Name");
-            ViewBag.PersonId = new SelectList(db.Persons, "Id", "MailAddress");
+            ViewBag.PersonId = new SelectList(db.Persons, "Id", "FullName");
             ViewBag.VehicleTypeId = new SelectList(db.VechicleTypes, "Id", "TypeName");
             return View();
         }
@@ -208,6 +208,7 @@ namespace Garage25.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 parkedVehicle.InDate = DateTime.Now;
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
@@ -215,7 +216,7 @@ namespace Garage25.Controllers
             }
             //parkedVehicle.InDate = DateTime.Now;
             ViewBag.ColorId = new SelectList(db.Colors, "Id", "Name", parkedVehicle.ColorId);
-            ViewBag.PersonId = new SelectList(db.Persons, "Id", "MailAddress", parkedVehicle.PersonId);
+            ViewBag.PersonId = new SelectList(db.Persons, "Id", "FullName", parkedVehicle.PersonId);
             ViewBag.VehicleTypeId = new SelectList(db.VechicleTypes, "Id", "TypeName", parkedVehicle.VehicleTypeId);
             return View(parkedVehicle);
         }
@@ -233,7 +234,7 @@ namespace Garage25.Controllers
                 return HttpNotFound();
             }
             ViewBag.ColorId = new SelectList(db.Colors, "Id", "Name", parkedVehicle.ColorId);
-            ViewBag.PersonId = new SelectList(db.Persons, "Id", "MailAddress", parkedVehicle.PersonId);
+            ViewBag.PersonId = new SelectList(db.Persons, "Id", "FullName", parkedVehicle.PersonId);
             ViewBag.VehicleTypeId = new SelectList(db.VechicleTypes, "Id", "TypeName", parkedVehicle.VehicleTypeId);
             return View(parkedVehicle);
         }
@@ -252,7 +253,7 @@ namespace Garage25.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ColorId = new SelectList(db.Colors, "Id", "Name", parkedVehicle.ColorId);
-            ViewBag.PersonId = new SelectList(db.Persons, "Id", "MailAddress", parkedVehicle.PersonId);
+            ViewBag.PersonId = new SelectList(db.Persons, "Id", "FullName", parkedVehicle.PersonId);
             ViewBag.VehicleTypeId = new SelectList(db.VechicleTypes, "Id", "TypeName", parkedVehicle.VehicleTypeId);
             return View(parkedVehicle);
         }
