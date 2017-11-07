@@ -23,8 +23,12 @@ namespace Garage25.Models.ViewModels
         //[Display(Name = "Parked Time")]
         //public TimeSpan ParkedTime { get; set; }
 
+        
         public int Days { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:00}")]
         public int Hours { get; set; }
+        [DisplayFormat(DataFormatString = "{0:00}")]
         public int Minutes { get; set; }
     }
 }
