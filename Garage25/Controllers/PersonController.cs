@@ -34,7 +34,7 @@ namespace Garage25.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                person = person.Where(p => p.FirstName.Contains(searchString) || p.LastName.Contains(searchString));
+                person = person.Where(p => p.FirstName.Contains(searchString) || p.LastName.Contains(searchString) ||p.MailAddress.Contains(searchString));
             }
 
             switch (sortOrder)

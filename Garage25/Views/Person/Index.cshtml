@@ -7,18 +7,25 @@
 <h2>List of Members</h2>
 
 <p>
-    @*@Html.ActionLink("Add New Member", "Create")*@    
-    <input type="submit" value="Add New Member" class="btn btn-default" onclick="location.href='@Url.Action("Create","Person")'" />
+    
+    
+    <input type="submit" value="Add New Member" class="btn btn-primary" onclick="location.href='@Url.Action("Create","Person")'" />
 
-    @*<input type="submit" value="Find Member" class="btn btn-default" onclick="location.href='@Url.Action("Index","Person")'" />*@
-
-    @using (Html.BeginForm("Index", "Person", FormMethod.Get))
+    @*@using (Html.BeginForm("Index", "Person", FormMethod.Get))
     {
     <p>
         Filter/Search Member: @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
     </p>
-    }
+    }*@
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find Member: @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+
+    </p>
+}
 
 
 <table class="table">
@@ -45,13 +52,9 @@
         </td>
 
         <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
-
             <input type="button" value="Edit" class="btn btn-default" onclick="location.href='@Url.Action("Edit","Person" ,new { id = item.Id })'" />
             <input type="button" value="Details" class="btn btn-default" onclick="location.href='@Url.Action("Details","Person" ,new { id = item.Id })'" />
-            <input type="button" value="Quit Membership" class="btn btn-default" onclick="location.href='@Url.Action("Delete","Person" ,new { id = item.Id })'" />
+            <input type="button" value="Quit Membership" class="btn btn-danger" onclick="location.href='@Url.Action("Delete","Person" ,new { id = item.Id })'" />
 
         </td>
     </tr>
